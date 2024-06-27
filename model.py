@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from models.convgru import PkGRU
 from models.decoder import Decoder
-from models.atten import Feature_Reweighting_ASG
+from models.atten import Feature_Reweighting
 import torch.nn.functional as F
 
 
@@ -53,7 +53,7 @@ class pregruuet(nn.Module):
                                   kernel_size=(3, 3),
                                   num_layers=args.n_layer,
                                   device=device).to(device)
-        self.Feature_Reweighting = Feature_Reweighting_ASG()
+        self.Feature_Reweighting = Feature_Reweighting()
 
         self.down_supp = nn.Sequential(
             nn.Conv2d(fea_dim, reduce_dim, kernel_size=1, padding=0, bias=False),

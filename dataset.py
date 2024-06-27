@@ -82,7 +82,7 @@ class TrainLoader(Dataset, ABC):
             for framid in range(self.slices):
                 mask = s_labels[i, framid, :, :, :]  # 1 x H x W
                 mask = mask.reshape(-1, mask.shape[-1])     #256x256
-                init_seed = place_seed_points(mask, down_stride=8, max_num_sp=self.max_sp, avg_sp_area=4)
+                init_seed = place_seed_points(mask, down_stride=8, max_num_sp=self.max_sp, avg_sp_area=9)
                 seed_list.append(init_seed.unsqueeze(0))
             s_init_seed1 = torch.cat(seed_list, 0)  # (slice, max_num_sp, 2)
             init_seed_list.append(s_init_seed1.unsqueeze(0))
@@ -173,7 +173,7 @@ class TestLoader(Dataset, ABC):
             for framid in range(self.slices):
                 mask = s_labels[i, framid, :, :, :]  # 1 x H x W
                 mask = mask.reshape(-1, mask.shape[-1])  # 256x256
-                init_seed = place_seed_points(mask, down_stride=8, max_num_sp=self.max_sp, avg_sp_area=4)
+                init_seed = place_seed_points(mask, down_stride=8, max_num_sp=self.max_sp, avg_sp_area=9)
                 seed_list.append(init_seed.unsqueeze(0))
             s_init_seed1 = torch.cat(seed_list, 0)  # (slice, max_num_sp, 2)
             init_seed_list.append(s_init_seed1.unsqueeze(0))
