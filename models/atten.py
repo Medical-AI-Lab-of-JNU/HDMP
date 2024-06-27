@@ -4,10 +4,10 @@ import torch.nn.functional as F
 import torch.utils.data
 
 
-class Feature_Reweighting_ASG(nn.Module):
+class Feature_Reweighting(nn.Module):
 
     def __init__(self):
-        super(Feature_Reweighting_ASG, self).__init__()
+        super(Feature_Reweighting, self).__init__()
 
         self.softmax = nn.Softmax(dim=-1)
         self.alpha = nn.Parameter(torch.zeros(1), requires_grad=True)  # Learnable Param.
